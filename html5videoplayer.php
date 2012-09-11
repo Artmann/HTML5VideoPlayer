@@ -32,8 +32,17 @@ License: GPL2
 
 	function show_video($atts, $content = null)
 	{
-		$width = 320;
-		$height = 320;
+		extract( shortcode_atts( array(
+			'autoplay' => '',
+			'controls' => '',
+                        'height' => '320',
+                        'loop' => '',
+                        'muted' => '',
+                        'poster' => '',
+                        'preload' => '',
+                        'width' => '320',
+
+		), $atts ) );
 
 		if($content == null)
 		{
@@ -46,7 +55,21 @@ License: GPL2
 			//Create HTML
 
 			$html = "<div class=\"video-wrapper\">\n";
-			$html .= "<video class=\"video\" width=\"$width\" height=\"$height\"> \n";
+			$html .= "<video class=\"video\" ";
+			$html . = " height=\"$height\" width=\"$width\" ";
+			if($autoplay != "")
+				$html .= "autoplay=\"$autoplay\" ";
+                        if($controls != "")
+                                $html .= "controls=\"$controls\" ";
+                        if($loop != "")
+                                $html .= "loop=\"$loop\" ";
+                        if($muted != "")
+                                $html .= "muted=\"$muted\" ";
+                        if($poster != "")
+                                $html .= "poster=\"$poster\" ";
+                        if($preload != "")
+                                $html .= "preload=\"$preload\" ";
+			$html . = "> \n";
 
 			foreach($urls as $url)
 			{
