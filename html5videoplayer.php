@@ -94,7 +94,7 @@ License: GPL2
 
 	function enqueue_my_styles()
 	{
-		wp_register_style( 'prefix-style', plugins_url('style.css', __FILE__) );
+		wp_register_style( 'prefix-style', plugins_url('css/style.css', __FILE__) );
         	wp_enqueue_style( 'prefix-style' );
 	}
 
