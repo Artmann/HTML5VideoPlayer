@@ -29,6 +29,8 @@ License: GPL2
 ?>
 
 <?php
+	add_action( 'wp_print_styles', 'enqueue_my_styles' );
+
 
 	function show_video($atts, $content = null)
 	{
@@ -89,6 +91,13 @@ License: GPL2
 			return $html;
 		}
 	}
+
+	function enqueue_my_styles()
+	{
+		wp_register_style( 'prefix-style', plugins_url('style.css', __FILE__) );
+        	wp_enqueue_style( 'prefix-style' );
+	}
+
 
 	add_shortcode("video", "show_video");
 
