@@ -74,7 +74,13 @@ License: GPL2
 			foreach($urls as $url)
 			{
 				$url = trim($url);
-				$html .= "<source src=\"$url\">\n";
+
+				$pieces = explode(".", $url);
+				$extension = strtolower($pieces[ (sizeof($pieces) - 1) ]);
+				$html .= "<source src=\"$url\" ";
+				if($extension == "mp4" || $extension == "ogg")
+					$html .= " type=\"video/$extension\"  ";
+				$html .= " />\n";
 			}
 
 			$html .= "Your browser does not support the video tag.\n";
