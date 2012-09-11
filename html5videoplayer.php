@@ -53,12 +53,12 @@ License: GPL2
 		else
 		{
 			$urls = explode("\n", $content);
-
+                         
 			//Create HTML
 
 			$html = "<div class=\"video-wrapper\">\n";
 			$html .= "<video class=\"video\" ";
-			$html . = " height=\"$height\" width=\"$width\" ";
+			$html .= " height=\"$height\" width=\"$width\" ";
 			if($autoplay != "")
 				$html .= "autoplay=\"$autoplay\" ";
                         if($controls != "")
@@ -71,18 +71,24 @@ License: GPL2
                                 $html .= "poster=\"$poster\" ";
                         if($preload != "")
                                 $html .= "preload=\"$preload\" ";
-			$html . = "> \n";
+			$html .= "> \n";
 
 			foreach($urls as $url)
 			{
 				$url = trim($url);
-
-				$pieces = explode(".", $url);
-				$extension = strtolower($pieces[ (sizeof($pieces) - 1) ]);
-				$html .= "<source src=\"$url\" ";
-				if($extension == "mp4" || $extension == "ogg")
-					$html .= " type=\"video/$extension\"  ";
-				$html .= " />\n";
+                                //$url = str_replace("<br />", "", $url);
+                                $url = strip_tags($url);
+                                
+                                if(strlen($url) != "")
+                                {
+                                    
+                                    $pieces = explode(".", $url);
+                                    $extension = strtolower($pieces[ (sizeof($pieces) - 1) ]);
+                                    $html .= "<source src=\"$url\" ";
+                                    if($extension == "mp4" || $extension == "ogg")
+                                            $html .= " type=\"video/$extension\"  ";
+                                    $html .= " />\n";
+                                }
 			}
 
 			$html .= "Your browser does not support the video tag.\n";
