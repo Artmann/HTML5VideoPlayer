@@ -1,0 +1,7 @@
+.video-wrapper
+{
+    padding: 10px;
+    border: solid 1px #111;
+    box-shadow: #000 1px 1px 3px;
+    background: #222;
+}

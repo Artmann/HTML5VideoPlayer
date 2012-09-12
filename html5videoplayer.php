@@ -30,18 +30,18 @@ License: GPL2
 
 <?php
 	add_action( 'wp_print_styles', 'enqueue_my_styles' );
-
+        add_shortcode("video", "show_video");
 
 	function show_video($atts, $content = null)
 	{
 		extract( shortcode_atts( array(
 			'autoplay' => '',
-			'controls' => '',
-                        'height' => '320',
+			'controls' => 'controls',
+                        'height' => '280',
                         'loop' => '',
                         'muted' => '',
                         'poster' => '',
-                        'preload' => '',
+                        'preload' => 'metadata',
                         'width' => '320',
 
 		), $atts ) );
@@ -102,9 +102,7 @@ License: GPL2
 	{
 		wp_register_style( 'prefix-style', plugins_url('css/style.css', __FILE__) );
         	wp_enqueue_style( 'prefix-style' );
+                wp_enqueue_script('myscript', plugins_url('js/html5videoplayer.js', __FILE__) );
 	}
-
-
-	add_shortcode("video", "show_video");
 
 ?>
